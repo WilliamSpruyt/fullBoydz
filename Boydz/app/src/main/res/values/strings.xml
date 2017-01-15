@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Boydz</string>
+    <string name="pick_image_intent_text">Take a photo or choose a file</string>
+</resources>

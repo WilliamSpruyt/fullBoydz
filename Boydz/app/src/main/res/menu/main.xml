@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/actionfile"
+        android:orderInCategory="100"
+        android:title="Choose/take picture"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/actiontrans"
+        android:orderInCategory="100"
+        android:title="Trippy/Untrippy"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/actionreset"
+        android:orderInCategory="100"
+        android:title="Reset Background"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/tilt"
+        android:orderInCategory="100"
+        android:title="Allow tilting"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/reset"
+        android:orderInCategory="100"
+        android:title="Reset"
+        app:showAsAction="never" />
+
+</menu>

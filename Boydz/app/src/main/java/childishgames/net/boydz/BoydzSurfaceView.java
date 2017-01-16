@@ -25,14 +25,14 @@ public class BoydzSurfaceView extends SurfaceView {
 
 
     Random r = new Random();
-    private float fingerX;
-    private float fingerY;
     int iconWidth;
     Paint mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint mOrbiterPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint mSingularityPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint mBouncePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     int iconHeight;
+    private float fingerX;
+    private float fingerY;
     private SurfaceHolder surfaceHolder;
     private boolean reset = false;
     private float slippingX = 0;
@@ -189,7 +189,8 @@ public class BoydzSurfaceView extends SurfaceView {
         mBouncePaint.setStyle(Paint.Style.FILL);
         mPaint.setTextSize(30);
         mPaint.setColor(Color.GREEN);
-        //canvas.drawText("X "+slippingX+" Y "+slippingY,50,50,mPaint);
+        //if (boyArrayList.size()>0){
+        //canvas.drawText(boyArrayList.get(0).getIncrementCirc()+"",50,50,mPaint);}
         if (reset) reset();
         reset = false;
         for (int i = 0; i < boyArrayList.size(); i++) {
@@ -231,7 +232,7 @@ public class BoydzSurfaceView extends SurfaceView {
                 }
                 if (circles) {
                     canvas.drawCircle((int) boyArrayList.get(i).getXpos(),
-                            (int) boyArrayList.get(i).getYpos(), boyArrayList.get(i).getVectorVel(), mOrbiterPaint);
+                            (int) boyArrayList.get(i).getYpos(), (int) boyArrayList.get(i).getIncrementCirc(), mOrbiterPaint);
                     boyArrayList.get(i).slipPos(slippingX, slippingY);
                 }
 
@@ -270,14 +271,17 @@ public class BoydzSurfaceView extends SurfaceView {
         if (name.equals("george")) {
             boy = new Boy(name, georgeMapArrayList, (float) xPosition, (float) yPosition, ((r.nextInt(20)) - 10),
                     ((r.nextInt(20)) - 10), (r.nextDouble() * 2) - 1, (-30 - r.nextInt(70)) / 5, breed, r.nextBoolean());
+            //boy.setBounceCirc(boy.getVectorVel());
         }
         if (name.equals("harry")) {
             boy = new Boy(name, harryMapArrayList, (float) xPosition, (float) yPosition, ((r.nextInt(20)) / -10),
                     ((r.nextInt(20)) / -10), (r.nextDouble() * 2) - 1, (-30 - r.nextInt(70)) / 5, breed, r.nextBoolean());
+            //boy.setBounceCirc(boy.getVectorVel());
         }
         if (name.equals("bernie")) {
             boy = new Boy(name, bernie, (float) xPosition, (float) yPosition, ((r.nextInt(20)) / -10),
                     ((r.nextInt(20)) / -10), (r.nextDouble() * 2) - 1, (-30 - r.nextInt(70)) / 5, breed, true);
+            //boy.setBounceCirc(boy.getVectorVel());
         }
 
 
@@ -306,8 +310,7 @@ public class BoydzSurfaceView extends SurfaceView {
     protected void setBreedBounce() {
         for (int i = 0; i < boyArrayList.size(); i++) {
             boyArrayList.get(i).setBreed("bouncer");
-            boyArrayList.get(i).setBounceCirc(boyArrayList.get(i).getVectorVel());
-            ;
+
         }
     }
 

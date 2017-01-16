@@ -46,6 +46,10 @@ public class Boy {
     int spin = 0;
     boolean flips = false;
     String name = "";
+    double incrementCirc;
+    Random r = new Random();
+    Bitmap bernieBit;
+    int bitHeight;
 
 
     //The Constructor is defined with arguments.
@@ -67,19 +71,30 @@ public class Boy {
         increment = Increment;
         bounce = Bounce;
         frames = 0;
-        bounceCirc = (int) Math.sqrt(Math.pow(velx, 2) + Math.pow(vely, 2));
+        bounceCirc = setBounceCirc((int) Math.sqrt(Math.pow(velx, 2) + Math.pow(vely, 2))) * 2;
         flips = Flips;
         spin = (int) Velx;
         name = Name;
+        incrementCirc = Math.abs(increment * 20);
 
+        if (name.equals("bernie")) {
+            int circ=r.nextInt(95)+5;
 
+           bernieBit= Bitmap.createScaledBitmap(boyBitmapArrayList.get(0),circ , circ, true);
+            bitHeight=circ/2;
+
+        }
+        else {bitHeight= (boyBitmapArrayList.get(0).getHeight())/2;}
     }
-
     public void display(Canvas canvas) {
         float expos = Float.valueOf(String.valueOf(xpos));
         float whypos = Float.valueOf(String.valueOf(ypos));
+        if (name.equals("bernie")) {
+            canvas.drawBitmap(bernieBit, expos - bernieBit.getWidth() / 2,
+                    whypos - bernieBit.getHeight() / 2, null);
+        }
 
-            if (velx > 0|| name.equals("bernie")) {
+            if (velx > 0&& !name.equals("bernie")) {
                 canvas.drawBitmap(boyBitmapArrayList.get(frames), expos - boyBitmapArrayList.get(frames).getWidth() / 2,
                         whypos - boyBitmapArrayList.get(frames).getHeight() / 2, null);
             }
@@ -92,8 +107,12 @@ public class Boy {
     public void display4disco(Canvas canvas) {
         float expos = Float.valueOf(String.valueOf(xpos));
         float whypos = Float.valueOf(String.valueOf(ypos));
+        if (name.equals("bernie")) {
+            canvas.drawBitmap(bernieBit, expos - bernieBit.getWidth() / 2,
+                    whypos - bernieBit.getHeight() / 2, null);
+        }
 
-            if (deltaxpos < 0 || name.equals("bernie")) {
+            if (deltaxpos < 0 && !name.equals("bernie")) {
                 canvas.drawBitmap(boyBitmapArrayList.get(frames), expos - boyBitmapArrayList.get(frames).getWidth() / 2,
                         whypos - boyBitmapArrayList.get(frames).getHeight() / 2, null);
             }
@@ -200,7 +219,7 @@ public class Boy {
             velx = velx * -1;
             spin = (int) velx;
         }
-        if (ypos + vely > mCanvasHeight -(boyBitmapArrayList.get(0).getHeight())/2) {
+        if (ypos + vely > mCanvasHeight -bitHeight){
             vely = bounce;
             bounce = bounce * e;
         }
@@ -347,13 +366,19 @@ public class Boy {
     }
 
     public int getBounceCirc() {
+
+
         return bounceCirc;
     }
 
 
 
-    public void setBounceCirc(int newCirc) {
-        bounceCirc = newCirc;
+    public int setBounceCirc(int newCirc) {
+        int res;
+
+        res = Math.min(newCirc,50);
+        res = Math.max(res,5);
+        return  res;
     }
 
     public void somersault(Canvas canvas) {
@@ -378,7 +403,11 @@ public class Boy {
         canvas.rotate(rotationAngle, (float) xpos + (boyBitmapArrayList.get(frames).getWidth() / 2),
                 (float) ypos + (boyBitmapArrayList.get(frames).getHeight() / 2)); //Rotate the canvas.
         //canvas.drawBitmap(bit,(float) xpos,(float) ypos,null); //Draw the ball on the rotated canvas.
-        if (velx > 0|| name.equals("bernie")) {
+        if (name.equals("bernie")) {
+            canvas.drawBitmap(bernieBit, (float)xpos - bernieBit.getWidth() / 2,
+                    (float)ypos - bernieBit.getHeight() / 2, null);
+        }
+        if (velx > 0&& !name.equals("bernie")) {
             canvas.drawBitmap(boyBitmapArrayList.get(frames), (float) xpos - boyBitmapArrayList.get(frames).getWidth() / 2,
                     (float) ypos - boyBitmapArrayList.get(frames).getHeight() / 2, null);
         }
@@ -396,4 +425,5 @@ public class Boy {
     public boolean getFlips() {
         return flips;
     }
+    public double getIncrementCirc(){return  incrementCirc;}
 }

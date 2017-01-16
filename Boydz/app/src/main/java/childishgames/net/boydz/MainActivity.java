@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     Sensor accelerometer;
     String preTrans = "black";
     BoydzSurfaceView boydzSurfaceView;
-    boolean tipper=true;
+    boolean tipper = true;
 
 
     //Extract the data…
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             return true;
         }
         if (id == R.id.tilt) {
-            tipper^=true;
+            tipper ^= true;
             return true;
         }
         if (id == R.id.reset) {
@@ -85,7 +85,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             boydzSurfaceView.setReset(true);
             return true;
         }
-
 
 
         return super.onOptionsItemSelected(item);

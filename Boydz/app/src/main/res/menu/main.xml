@@ -22,7 +22,7 @@
         android:id="@+id/tilt"
         android:orderInCategory="100"
         android:title="Allow tilting"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
     <item
         android:id="@+id/reset"
         android:orderInCategory="100"
